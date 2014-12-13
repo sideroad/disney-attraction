@@ -5,15 +5,7 @@ var superagent = require('superagent');
 var async = require('async');
 var _ = require('lodash');
 
-var grabzit = require('grabzit');
-var client = new grabzit(process.env.GRABZIT_KEY, process.env.GRABZIT_SECRET);
-
-router.get('/cap/:name/', function(req, res) {
-  res.send(req.params.name);
-  res.end();
-});
-
-router.get('/list/:park/', function(req, res) {
+router.get('/:park/', function(req, res) {
   try {
 
     var url = 'http://s.tokyodisneyresort.jp/'+req.params.park+'/atrc_list.htm?waitShorter=true&noFst=true';
@@ -35,12 +27,9 @@ router.get('/list/:park/', function(req, res) {
           }
 
           name = $item.find('h3').text();
-          client.set_image_options("http://disney-attraction/cap/"+encodeURIComponent(name)+"/", {"format":"png"});
-          client.save_to("tmp/"+name+".png"); 
-
-
           return {
             name: name,
+            image: 'http://capturing.herokuapp.com/cap/'+encodeURIComponent(name)+'/144/18/?font-size=18px',
             wait: Number($item.find('.waitTime').text().replace(/分/,'')||0)
           };
         }).get();
