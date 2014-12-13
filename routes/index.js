@@ -16,9 +16,9 @@ router.get('/:park/', function(req, res) {
       ['http://code.jquery.com/jquery.js'],
       function (errors, window) {
         var $ = window.$,
-            atractions = [];
+            attractions = [];
 
-        atractions = $('#wait section.theme.active .run.midArw').map(function(index, elem){
+        attractions = $('#wait section.theme.active .run.midArw').map(function(index, elem){
           var $item = $(elem);
 
           if($.trim($item.find('.run').text()) !== '運営中'){
@@ -31,7 +31,7 @@ router.get('/:park/', function(req, res) {
           };
         }).get();
 
-        atractions.reverse();
+        attractions.reverse();
 
         res.set({
           'Access-Control-Allow-Origin':'*',
@@ -40,7 +40,7 @@ router.get('/:park/', function(req, res) {
         });
 
         res.json({
-          atractions: atractions
+          attractions: attractions
         });
         res.end();
       }
