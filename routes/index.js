@@ -1,10 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var jsdom = require("jsdom");
-var redis = require('redis');
-var url = require('url');
-var redisURL = url.parse(process.env.REDISCLOUD_URL);
-var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
 var superagent = require('superagent');
 var async = require('async');
 var _ = require('lodash');
