@@ -21,7 +21,7 @@ router.get('/:park/', function(req, res) {
         atractions = $('#wait section.theme.active .run.midArw').map(function(index, elem){
           var $item = $(elem);
 
-          if($.trim($item.find('.run').text()) == '終日運営休止'){
+          if($.trim($item.find('.run').text()) !== '運営中'){
             return;
           }
 
