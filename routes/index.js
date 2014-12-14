@@ -29,7 +29,6 @@ router.get('/:park/', function(req, res) {
           name = $item.find('h3').text();
           return {
             name: name,
-            image: 'http://capturing.herokuapp.com/cap/144/18/'+encodeURIComponent(name)+'.png',
             wait: Number($item.find('.waitTime').text().replace(/分/,'')||0)
           };
         }).get();
