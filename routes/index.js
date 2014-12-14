@@ -29,7 +29,7 @@ router.get('/:park/', function(req, res) {
           name = $item.find('h3').text();
           return {
             name: name,
-            image: 'http://capturing.herokuapp.com/cap/'+encodeURIComponent(name)+'/144/18/?font-size=18px',
+            image: 'http://capturing.herokuapp.com/cap/144/18/'+encodeURIComponent(name)+'.png?font-size=18px',
             wait: Number($item.find('.waitTime').text().replace(/分/,'')||0)
           };
         }).get();
